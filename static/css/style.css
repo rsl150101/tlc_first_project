@@ -1,0 +1,25 @@
+/*config*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
+@import "config/variables.css";
+@import "config/reset.css";
+
+/*component*/
+@import "component/screen-frame.css";
+
+/*screen*/
+@import "screen/home.css";
+@import "screen/profile.css";
+@import "screen/team.css";
+@import "screen/watch.css";
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #e3f2fd;
+  cursor: url("config/cursor.cur"), pointer;
+  font-family: 'Open Sans', sans-serif;
+}
+

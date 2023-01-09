@@ -1,0 +1,114 @@
+.index-header {
+    width: 1500px;
+    height: 200px;
+
+    background-image: url("/static/imgs/title.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.index-main {
+    width: 1500px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+    transition: 1.5s ease-in-out;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 50px 10px var(--shadow-color);
+    border-radius: 15px;
+    animation: fade-in 1s ease-in-out forwards;
+}
+
+.rotate:hover .card {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: red;
+    backface-visibility: hidden;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.name {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.front {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.rotate:first-child .front {
+    background-image: url("/static/imgs/team-avatar.png");
+}
+
+.rotate:nth-child(2) .front {
+    background-color: bisque;
+    background-image: url("/static/imgs/hravatar.png");
+    background-size: 150%;
+}
+
+.rotate:nth-child(3) .front {
+    background-color: aquamarine;
+    background-image: url("/static/imgs/msavatar.png");
+    background-size: 150%;
+}
+
+.rotate:nth-child(4) .front {
+    background-color: cadetblue;
+    background-image: url("/static/imgs/hsavatar.png");
+    background-size: 150%;
+}
+
+.rotate:last-child .front {
+    background-color: deepskyblue;
+    background-image: url("/static/imgs/wjavatar.png");
+    background-size: 150%;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.rotate:nth-child(2) .back {
+    background-color: bisque;
+}
+
+.rotate:nth-child(3) .back {
+    background-color: aquamarine;
+}
+
+.rotate:nth-child(4) .back {
+    background-color: cadetblue;
+}
+
+.rotate:nth-child(5) .back {
+    background-color: saddlebrown;
+}
+
+.rotate:last-child .back {
+    background-color: deepskyblue;
+}
+
+.back > ul > li {
+    margin-bottom: 3px;
+}

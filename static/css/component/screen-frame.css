@@ -1,0 +1,7 @@
+.screen {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 50px 5px var(--shadow-color);
+}

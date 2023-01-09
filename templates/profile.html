@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>4조 | {username}</title>
+    <script>
+        $(document).ready(function () {
+            getProfile()
+        });
+
+        function getProfile() {
+            let userId = '{{ user_id }}'
+            const photosStr = '{{ photos }}'
+            const photos = photosStr.slice(1,-1).replaceAll("&#39;","").split(",").map(photo=>photo.trim())
+            document.title= `4조 | {{ name }}`
+            if(photos.length !==0){
+                for (let i = 1; i <= photos.length; i++) {
+                    const tempHtml = `<a href=${userId}/photos/${i} class="feed">
+                                      <img src=${photos[i - 1]}/>
+                                      </a>`
+
+                    $(".feed-box").append(tempHtml)
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<section class="screen">
+    <header class="profile">
+        <div class="profile__avatar">
+            <img src={{ avatar }} class="profile__avatar__photo"/>
+        </div>
+        <ul class="profile__info">
+            <li class="profile__info__name">
+                <h3>🪪 {{ name }}</h3>
+            </li>
+            <li class="profile__info__mbti">
+                <a href="/" class="close">❌</a>
+                <span>🧮 {{ mbti }}</span>
+            </li>
+            <li class="profile__info__work">
+                <span>🤝 {{ style }}</span>
+            </li>
+            <li class="profile__info__blog">
+                <a href={{ blog }}>✍ 블로그</a>
+            </li>
+        </ul>
+    </header>
+    <main class="feed-box">
+        <a href="#" class="add-feed feed">
+            <div class="plus">+</div>
+        </a>
+    </main>
+</section>
+</body>
+</html>

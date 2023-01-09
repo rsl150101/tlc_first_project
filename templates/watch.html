@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <title>4조 | Photo Upload</title>
+    <script>
+        $(document).ready(function () {
+            getPhoto()
+            showComment()
+        });
+        const photoId = '{{ photo_id }}'
+        const userId = '{{ user_id }}'
+
+
+        function getPhoto() {
+            const photo = '{{ photo }}'
+            {#const commentsStr = '{{ comments }}'#}
+            {#const comments = commentsStr.slice(1, -1).replaceAll("&#39;", "").split(",").map(photo => photo.trim())#}
+
+
+            $('.close').attr('href', `/users/${userId}`)
+            $('.photo img').attr('src', `${photo}`)
+
+            {#if (comments.length !== 0) {#}
+            {#    for (let i = 0; i < comments.length; i++) {#}
+            {#        let comment = comments[i]#}
+            {#        let temp_html = `<li>${comment}</li>`#}
+            {##}
+            {#        $('.comment__list').append(temp_html)#}
+            {#    }#}
+            {# }#}
+        }
+
+        function saveComment(){
+            const giveComment = $("#comment-input").val()
+            $.ajax({
+                type:'POST',
+                url: '/comments',
+                data: {giveComment, photoId,userId},
+                success: function (response){
+                    window.location.reload()
+                }
+            })
+        }
+
+        function showComment(){
+            $.ajax({
+                type:"GET",
+                url:"/comments",
+                data:{},
+                success: function (response){
+                    const comments = response.comments
+                    comments.forEach(item=>{
+                        if((userId===item.user_idx)&&(photoId===item.photo_idx)){
+                            let temp_html =`<li>${item.comment}</li>`
+                            $('.comment__list').append(temp_html)
+                        }
+                    })
+                }
+            })
+        }
+
+
+    </script>
+</head>
+<body>
+<main class="screen photo-screen">
+    <a href="" class="close">❌</a>
+    <section class="photo">
+        <img src=""/>
+    </section>
+    <section class="comment">
+        <ul class="comment__list">
+
+        </ul>
+        <div class="comment-form">
+            <div>
+                <input type="text" name="comment" id="comment-input" placeholder="🗨️ 예쁘게 말하기">
+                <button onclick="saveComment()" type="button" id="comment-submit">⬆️</button>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

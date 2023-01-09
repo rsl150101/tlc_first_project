@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>4조 | 팀 소개</title>
+    <script>
+        $(document).ready(function (){
+           innerGoal()
+        });
+
+        function innerGoal(){
+            $.ajax({
+                type: "GET",
+                url: "/team/info",
+                data: {},
+                success: function (response) {
+                    let rows = response['team']
+
+                    console.log(rows)
+                    const goal = rows[1].goal
+                    const desc = rows[1].desc
+                    const appoint = rows[1].appoint
+                    console.log(appoint)
+
+                    const goalText = document.querySelector(".goal__text")
+                    goalText.textContent = goal
+
+                    const descText = document.querySelector(".desc__text")
+                    descText.textContent = desc
+
+                    const appointText = document.querySelector(".appoint__text")
+                    appointText.textContent = appoint
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<section class="screen team-screen">
+    <header class="team-header">
+        <a href="/" class="close">❌</a>
+        <img class="team-header__title" src="/static/imgs/title.png"/>
+    </header>
+    <main class="team-main">
+        <section class="goal">
+            <h3 class="goal__title title--style">🎯목표</h3>
+            <p class="goal__text text--style"></p>
+        </section>
+        <section class="description">
+            <h3 class="desc__title title--style">🧑‍💻소개</h3>
+            <p class="desc__text text--style"></p>
+        </section>
+        <section class="appoint">
+            <h3 class="appoint__title title--style">🤙약속</h3>
+            <p class="appoint__text text--style"></p>
+        </section>
+    </main>
+</section>
+</body>
+</html>
