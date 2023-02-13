@@ -1,5 +1,7 @@
-const getHome = (req,res) =>{
-    return res.render("index")
+class globalController {
+  getHome = (req, res) => {
+    return res.render("index");
+  };
 }
 
-module.exports = {getHome}
+module.exports = globalController;
